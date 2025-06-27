@@ -55,14 +55,15 @@ const TodoApp = () => {
   };
 
   return (
-    <section className="flex flex-col items-center bg-gradient-to-r from-[#001214] to-[#001f29] pt-[5%] pb-[3%] w-screen min-h-screen overflow-hidden text-white">
+    <section className="flex flex-col items-center bg-gradient-to-r from-[#001214] to-[#001f29] pt-[5%] pb-[3%] w-full min-h-screen overflow-x-hidden overflow-y-auto text-white">
+
       <header className="flex flex-col items-center justify-around">
         <h1 className="text-3xl sm:text-4xl">Todo List</h1>
         <TodoDateTime />
       </header>
       <TodoForm onFormSubmit={handleSubmit} />
       <section>
-        <ul className="flex flex-col pt-8">
+        <ul className="flex flex-col pt-8 ">
           {tasks.map((currTask) => (
             <TodoItems
               currTask={currTask.content}

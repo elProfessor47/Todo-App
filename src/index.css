@@ -1,0 +1,11 @@
+@import "tailwindcss";
+
+@theme {
+  --breakpoint-fh: 25rem;
+  --breakpoint-f8: 34.375rem; 
+  --breakpoint-9h: 56.25rem;  
+}
+
+* {
+  font-family: "fira code";
+}

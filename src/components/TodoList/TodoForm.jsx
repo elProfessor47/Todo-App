@@ -26,7 +26,7 @@ const TodoForm = ({ onFormSubmit }) => {
           />
         </div>
         <div>
-          <button title="Add Task" className="h-10 px-2 py-2 text-sm bg-blue-600 outline-none w-22 fh:w-28 f8:w-35 sm:w-40 sm:h-12 md:h-14 rounded-se-xl rounded-ee-xl">
+          <button title="Add Task" className=" hover:bg-blue-700 transition-colors duration-100 cursor-pointer h-10 px-2 py-2 text-sm bg-blue-600 outline-none w-22 fh:w-28 f8:w-35 sm:w-40 sm:h-12 md:h-14 rounded-se-xl rounded-ee-xl">
             Add Task
           </button>
         </div>

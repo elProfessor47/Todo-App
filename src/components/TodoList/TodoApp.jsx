@@ -55,7 +55,7 @@ const TodoApp = () => {
   };
 
   return (
-    <section className="flex flex-col items-center bg-gradient-to-r from-[#001214] to-[#001f29] pt-[5%] pb-[3%] w-full min-h-screen overflow-x-hidden overflow-y-auto text-white">
+    <section className="flex flex-col items-center bg-gradient-to-br from-[#033338] to-[#3a0606] pt-[5%] pb-[3%] w-full min-h-screen overflow-x-hidden overflow-y-auto text-white">
       <header className="flex flex-col items-center justify-around">
         <h1 className="text-3xl sm:text-4xl">Todo List</h1>
         <TodoDateTime />

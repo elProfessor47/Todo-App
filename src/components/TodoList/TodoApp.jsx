@@ -56,7 +56,6 @@ const TodoApp = () => {
 
   return (
     <section className="flex flex-col items-center bg-gradient-to-r from-[#001214] to-[#001f29] pt-[5%] pb-[3%] w-full min-h-screen overflow-x-hidden overflow-y-auto text-white">
-
       <header className="flex flex-col items-center justify-around">
         <h1 className="text-3xl sm:text-4xl">Todo List</h1>
         <TodoDateTime />
@@ -79,6 +78,7 @@ const TodoApp = () => {
         <button
           className="px-8 py-2 m-3 bg-red-600 cursor-pointer rounded-xl"
           onClick={handleClearTasks}
+          title="Clear all"
         >
           Clear all
         </button>

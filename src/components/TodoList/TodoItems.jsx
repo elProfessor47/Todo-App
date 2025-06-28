@@ -11,13 +11,13 @@ const TodoItems = ({ currTask, checked, onDeleteTodo, onCheckedTodo }) => {
       <div className="flex items-center justify-between px-2 9h:gap-16 f8:gap-10 fh:gap-4 sm:gap-14 md:gap-14 lg:gap-15">
         <button className="text-4xl cursor-pointer" 
         onClick={() => onCheckedTodo(currTask)}>
-          {checked ? <MdCancel className="text-red-500 " /> : <FaSquareCheck className="text-green-500 " />}
+          {checked ? <MdCancel title="Cancel" className="text-red-500 " /> : <FaSquareCheck title="Check" className="text-green-500 " />}
         </button>
         <button
           className="pr-1 text-4xl cursor-pointer md:pr-3"
           onClick={() => onDeleteTodo(currTask)}
         >
-          <MdDeleteForever />
+          <MdDeleteForever title="Delete" />
         </button>
       </div>
     </li>

@@ -8,7 +8,11 @@ const TodoApp = () => {
   const todoKey = "TodoLocalStorage";
   const [tasks, setTasks] = useState(getLocalStorage);
   const [toggleUpdate, setToggleUpdate] = useState(false);
-  const [inputValue, setInputValue] = useState({ id: "", content: "", checked: false });
+  const [inputValue, setInputValue] = useState({
+    id: "",
+    content: "",
+    checked: false,
+  });
   const [editItemId, setEditItemId] = useState(null);
 
   function getLocalStorage() {
@@ -25,7 +29,7 @@ const TodoApp = () => {
     const matchedTodoItem = tasks.find(
       (currTask) => content === currTask.content
     );
-    if (matchedTodoItem && (!toggleUpdate && !editItemId)) return;
+    if (matchedTodoItem && !toggleUpdate && !editItemId) return;
 
     if (toggleUpdate && editItemId) {
       const updatedTasks = tasks.map((currTask) => {
@@ -73,7 +77,6 @@ const TodoApp = () => {
     setToggleUpdate(true);
 
     setInputValue(itemToEdit);
-    
 
     setEditItemId(itemToEdit.id);
   };

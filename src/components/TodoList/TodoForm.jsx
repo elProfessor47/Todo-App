@@ -1,14 +1,12 @@
-import React, { useState } from "react";
+const TodoForm = ({ onFormSubmit, toggleUpdate, inputValue, setInputValue }) => {
 
-const TodoForm = ({ onFormSubmit }) => {
-  const [inputValue, setInputValue] = useState({});
 
   const handleInput = (value) => {
     setInputValue({id: value, content: value, checked: false});
   };
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
+  const handleSubmit = (event) => {
+    event.preventDefault();
     onFormSubmit(inputValue);
     setInputValue({id: "", content: "", checked: false});
   };
@@ -27,7 +25,7 @@ const TodoForm = ({ onFormSubmit }) => {
         </div>
         <div>
           <button title="Add Task" className=" hover:bg-blue-700 transition-colors duration-100 cursor-pointer h-10 px-2 py-2 text-sm bg-blue-600 outline-none w-22 fh:w-28 f8:w-35 sm:w-40 sm:h-12 md:h-14 rounded-se-xl rounded-ee-xl">
-            Add Task
+            { toggleUpdate ? <span>Upd. Task</span> : <span>Add Task</span>}
           </button>
         </div>
       </form>

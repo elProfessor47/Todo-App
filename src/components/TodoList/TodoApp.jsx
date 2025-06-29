@@ -2,10 +2,14 @@ import React, { useEffect, useState } from "react";
 import TodoForm from "./TodoForm";
 import TodoDateTime from "./TodoDateTime";
 import TodoItems from "./TodoItems";
+import { FaLessThanEqual } from "react-icons/fa";
 
 const TodoApp = () => {
   const todoKey = "TodoLocalStorage";
   const [tasks, setTasks] = useState(getLocalStorage);
+  const [toggleUpdate, setToggleUpdate] = useState(false);
+  const [inputValue, setInputValue] = useState({ id: "", content: "", checked: false });
+  const [editItemId, setEditItemId] = useState(null);
 
   function getLocalStorage() {
     let storedTodos = localStorage.getItem(todoKey);
@@ -21,7 +25,22 @@ const TodoApp = () => {
     const matchedTodoItem = tasks.find(
       (currTask) => content === currTask.content
     );
-    if (matchedTodoItem) return;
+    if (matchedTodoItem && (!toggleUpdate && !editItemId)) return;
+
+    if (toggleUpdate && editItemId) {
+      const updatedTasks = tasks.map((currTask) => {
+        if (currTask.id == editItemId) {
+          return { ...currTask, content: inputValue.content };
+        } else {
+          return currTask;
+        }
+      });
+      setTasks(updatedTasks);
+      setToggleUpdate(false);
+      setInputValue({ id: "", content: "", checked: false });
+      setEditItemId(null);
+      return;
+    }
 
     setTasks((prevTasks) => [...prevTasks, { id, content, checked }]);
   };
@@ -29,7 +48,7 @@ const TodoApp = () => {
   //setting tasks to localStorage
   useEffect(() => {
     localStorage.setItem(todoKey, JSON.stringify(tasks));
-  },[tasks])
+  }, [tasks]);
 
   //handle Checked Todo function
   const handleCheckTodo = (value) => {
@@ -49,6 +68,16 @@ const TodoApp = () => {
     setTasks(updatedArray);
   };
 
+  const handleEditTodo = (value) => {
+    const itemToEdit = tasks.find((currTask) => currTask.content == value);
+    setToggleUpdate(true);
+
+    setInputValue(itemToEdit);
+    
+
+    setEditItemId(itemToEdit.id);
+  };
+
   // handle clear all Todo function
   const handleClearTasks = () => {
     setTasks([]);
@@ -60,7 +89,12 @@ const TodoApp = () => {
         <h1 className="text-3xl sm:text-4xl">Todo List</h1>
         <TodoDateTime />
       </header>
-      <TodoForm onFormSubmit={handleSubmit} />
+      <TodoForm
+        onFormSubmit={handleSubmit}
+        toggleUpdate={toggleUpdate}
+        inputValue={inputValue}
+        setInputValue={setInputValue}
+      />
       <section>
         <ul className="flex flex-col pt-8 ">
           {tasks.map((currTask) => (
@@ -68,6 +102,7 @@ const TodoApp = () => {
               currTask={currTask.content}
               key={currTask.id}
               checked={currTask.checked}
+              onEditTodo={handleEditTodo}
               onDeleteTodo={handleDeleteTodo}
               onCheckedTodo={handleCheckTodo}
             />
